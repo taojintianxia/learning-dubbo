@@ -111,4 +111,10 @@ public class Consumer {
 }
 ```
 
+下一步 :
+
+* 阅读下这篇文章 [Introduction to Dubbo](http://www.baeldung.com/dubbo) 来了解更多dubbo的基础特性
+* 想要了解更多细节可以阅读下dubbo的用户文档([英文](http://dubbo.io/books/dubbo-user-book-en/), [中文](http://dubbo.io/books/dubbo-user-book/))
+* 想了解dubbo的topic管理可以阅读dubbo的管理员文档([英文](http://dubbo.io/books/dubbo-admin-book-en/), [中文](http://dubbo.io/books/dubbo-admin-book/))
+* 对dubbo感兴趣, 想向dubbo捐献代码? 可以阅读下dubbo的开发者文档([英文](http://dubbo.io/books/dubbo-dev-book-en/), [中文](http://dubbo.io/books/dubbo-dev-book/))
 
