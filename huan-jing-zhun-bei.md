@@ -25,6 +25,34 @@ public interface DemoService {
 }
 
 ```
-  
+3.实现service provider
+
+```
+package com.alibaba.dubbo.demo.provider;
+import com.alibaba.dubbo.demo.DemoService;
+
+public class DemoServiceImpl implements DemoService {
+    public String sayHello(String name) {
+        return "Hello " + name;
+    }
+}
+
+```
+3.配置service provider
+下面的一小段代码展示了如何通过spring来配置dubbo的service provider, 这也是比较推荐的方式.当然了, 你也可以通过[API configuration](https://dubbo.gitbooks.io/dubbo-user-book/content/configuration/api.html)的方式来配置.
+
+```
+<?xml version="1.0" encoding="UTF-8"?>  
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+    <dubbo:application name="demo-provider"/>
+    <dubbo:registry address="multicast://224.5.6.7:1234"/>
+    <dubbo:protocol name="dubbo" port="20880"/>
+    <dubbo:service interface="com.alibaba.dubbo.demo.DemoService" ref="demoService"/>
+    <bean id="demoService" class="com.alibaba.dubbo.demo.provider.DemoServiceImpl"/>
+</beans>
+```
 
 
