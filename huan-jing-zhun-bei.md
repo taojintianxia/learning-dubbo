@@ -1,6 +1,6 @@
 github上可以找到dubbo官网的一些例子 : [dubbo project](https://github.com/alibaba/dubbo)
 
-环境需求 :  
+1.环境需求 :  
 
 * JDK: version 6 or higher  
 * Maven: version 3 or higher
@@ -14,6 +14,7 @@ Maven依赖 : (最新版的dubbo为2.6.0)
     <version>${dubbo.version}</version>
 </dependency>
 ```
+
 2.定义服务接口 :
 鉴于服务端与客户端都依赖相同的接口, 这里强烈建议将接口放在一个单独的模块中, 这样可以给供provider跟consumer共享.  
 
@@ -25,6 +26,7 @@ public interface DemoService {
 }
 
 ```
+
 3.实现service provider
 
 ```
@@ -38,7 +40,8 @@ public class DemoServiceImpl implements DemoService {
 }
 
 ```
-3.配置service provider
+
+4.配置service provider
 下面的一小段代码展示了如何通过spring来配置dubbo的service provider, 这也是比较推荐的方式.当然了, 你也可以通过[API configuration](https://dubbo.gitbooks.io/dubbo-user-book/content/configuration/api.html)的方式来配置.
 
 ```
@@ -54,7 +57,8 @@ public class DemoServiceImpl implements DemoService {
     <bean id="demoService" class="com.alibaba.dubbo.demo.provider.DemoServiceImpl"/>
 </beans>
 ```
-4.启动service provider 
+
+5.启动service provider 
 同样的, 下面的代码段展示了结合spring进行配置的方式
 
 ```
