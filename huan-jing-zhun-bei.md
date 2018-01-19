@@ -54,5 +54,19 @@ public class DemoServiceImpl implements DemoService {
     <bean id="demoService" class="com.alibaba.dubbo.demo.provider.DemoServiceImpl"/>
 </beans>
 ```
+4.启动service provider 
+同样的, 下面的代码段展示了结合spring进行配置的方式
+
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+    <dubbo:application name="demo-consumer"/>
+    <dubbo:registry address="multicast://224.5.6.7:1234"/>
+    <dubbo:reference id="demoService" interface="com.alibaba.dubbo.demo.DemoService"/>
+</beans>
+```
 
 
