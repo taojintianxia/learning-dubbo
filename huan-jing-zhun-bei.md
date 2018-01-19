@@ -62,6 +62,23 @@ public class DemoServiceImpl implements DemoService {
 同样的, 下面的代码段展示了结合spring进行配置的方式
 
 ```
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class Provider {
+    public static void main(String[] args) throws Exception {
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
+                new String[] {"META-INF/spring/dubbo-demo-provider.xml"});
+        context.start();
+        // press any key to exit
+        System.in.read();
+    }
+}
+```
+
+6.配置service consumer
+同样的, 下面的代码段展示了结合spring进行配置的方式
+
+```
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -71,6 +88,27 @@ public class DemoServiceImpl implements DemoService {
     <dubbo:registry address="multicast://224.5.6.7:1234"/>
     <dubbo:reference id="demoService" interface="com.alibaba.dubbo.demo.DemoService"/>
 </beans>
+```
+
+7.运行service consumer
+
+```
+import com.alibaba.dubbo.demo.DemoService;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class Consumer {
+    public static void main(String[] args) throws Exception {
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
+                new String[]{"META-INF/spring/dubbo-demo-consumer.xml"});
+        context.start();
+        // obtain proxy object for remote invocation
+        DemoService demoService = (DemoService) context.getBean("demoService");
+        // execute remote invocation
+        String hello = demoService.sayHello("world");
+        // show the result
+        System.out.println(hello);
+    }
+}
 ```
 
 
